@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <Windows.h>
 using namespace std;
 
@@ -57,7 +57,7 @@ void BankAccount::getBalance() {
 }
 
 void BankAccount::withdraw() {
-    int a;
+    long long int a;
 
     do {
         cout << "Сколько желаете снять? ";
@@ -98,6 +98,9 @@ bool transfer(BankAccount& from, BankAccount& to, double amount) {
         cout << "Недостаточно средств для перевода" << endl;
         return false;
     }
+
+
+
 }
 int main() {
     setlocale(LC_ALL, "Rus");
@@ -118,6 +121,13 @@ int main() {
         cout << "7. Перевести средства в другу(его счет 888). \n"; 
         cout << "8. Выход. \n";
         cin >> choice;
+
+        if (!(cin >> choice)) {
+                cout << "Ошибка: Неверный ввод. Пожалуйста, введите число." << endl;
+                cin.clear(); 
+                cin.ignore(1000, '\n'); 
+                continue; 
+        }
 
         switch (choice) {
         case 1:
@@ -165,6 +175,8 @@ int main() {
         cout << endl;
 
     } while (choice != 8);
+
+  
 
     return 0;
 }
